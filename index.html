@@ -254,23 +254,6 @@
             setTimeout(type, typeSpeed);
         }
         document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
-
-        // 3. 靜態期限檢查：6/30 後自動關閉網頁內容
-        function checkDeadline() {
-            const targetDate = new Date("2026-06-30T23:59:59").getTime();
-            const now = new Date().getTime();
-
-            if (now >= targetDate) {
-                document.body.innerHTML = `
-                    <div style="text-align:center; padding:10rem 2rem; font-family:sans-serif; background-color:#0f172a; color:#f8fafc;">
-                        <h1 style="color:#ef4444; margin-bottom:1rem;">⚠️ 本網頁瀏覽期限已屆滿</h1>
-                        <p style="color:#94a3b8;">該網頁設定之瀏覽期限至 2026 年 6 月 30 日為止，目前已停止開放。</p>
-                    </div>
-                `;
-            }
-        }
-        // 網頁載入時立刻檢查
-        document.addEventListener("DOMContentLoaded", checkDeadline);
     </script>
 </body>
 </html>
