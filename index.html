@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人首頁 | My Portfolio</title>
+    <title>個人首頁</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -17,7 +17,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
         }
 
         body {
@@ -31,33 +31,6 @@
             text-align: center;
             padding: 5rem 1rem 3rem 1rem;
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        }
-
-        .avatar-placeholder {
-            width: 120px;
-            height: 120px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .typing-text {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            height: 30px;
-            font-weight: 500;
         }
 
         /* 導覽頁籤 */
@@ -81,12 +54,10 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 4px;
         }
 
-        .tab-btn.active, .tab-btn:hover {
+        .tab-btn.active {
             color: var(--text-color);
-            background-color: rgba(255, 255, 255, 0.05);
             border-bottom: 2px solid var(--primary-color);
         }
 
@@ -99,16 +70,10 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
 
         .tab-content.active {
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .card {
@@ -116,102 +81,39 @@
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        h2 {
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--secondary-color);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 4rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="avatar-placeholder">💻</div>
-        <h1>歡迎來到我的個人空間</h1>
-        <div class="typing-text" id="typing"></div>
+        <h1>我的個人網頁</h1>
+        <p>歡迎來到我的網站</p>
     </header>
 
     <nav>
-        <button class="tab-btn active" onclick="switchTab(event, 'about')">關於我</button>
-        <button class="tab-btn" onclick="switchTab(event, 'projects')">作品專案</button>
-        <button class="tab-btn" onclick="switchTab(event, 'contact')">聯絡資訊</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'tab1')">主要內容</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab2')">作品集</button>
     </nav>
 
     <div class="container">
-        <div id="about" class="tab-content active">
+        <div id="tab1" class="tab-content active">
             <div class="card">
-                <h2>個人簡介</h2>
-                <p>你好！我是一名對技術充滿熱情的學習者。目前專注於資料分析、網頁開發以及資訊安全等領域。喜歡透過程式解決生活中的大小問題，並持續探索新技術的應用可能。</p>
-            </div>
-            <div class="card">
-                <h2>專業技能</h2>
-                <div class="skill-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">HTML / CSS</span>
-                    <span class="tag">資料分析</span>
-                    <span class="tag">密碼學基礎</span>
-                    <span class="tag">Git / GitHub</span>
-                </div>
+                <h2>標題一</h2>
+                <p>請在此處輸入你的內容...</p>
             </div>
         </div>
 
-        <div id="projects" class="tab-content">
+        <div id="tab2" class="tab-content">
             <div class="card">
-                <h2>系統工具與自動化開發</h2>
-                <p>使用 Python 開發的本地檔案管理與分類工具，能自動辨識檔案類型並歸檔，擺脫外部 API 依賴，實現純本地的高效辦公自動化。</p>
-            </div>
-            <div class="card">
-                <h2>演算法實作與效能測試</h2>
-                <p>獨立實作傳統與現代加密演算法（如 AES、DES GUI 工具、密碼矩陣），並針對不同演算法進行多輪效能測試與數據分析報告。</p>
-            </div>
-        </div>
-
-        <div id="contact" class="tab-content">
-            <div class="card">
-                <h2>如何聯繫我</h2>
-                <p>如果您對我的專案感興趣，或者有任何學術、技術上的交流意願，歡迎透過以下方式聯絡：</p>
-                <br>
-                <p>📧 Email: <a href="mailto:your-email@example.com" style="color: var(--primary-color);">your-email@example.com</a></p>
-                <p>🐙 GitHub: <a href="https://github.com" target="_blank" style="color: var(--primary-color);">github.com/your-username</a></p>
+                <h2>標題二</h2>
+                <p>請在此處輸入你的內容...</p>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 個人作品集. All Rights Reserved.</p>
-    </footer>
-
     <script>
-        // 1. 頁籤切換功能 (Tab Switching)
+        // JavaScript 最低限度需求：控制分頁切換
         function switchTab(event, tabId) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -222,38 +124,6 @@
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
-
-        // 2. 打字機動態效果 (Typing Effect)
-        const words = ["持續學習的開發者", "熱愛資料分析", "密碼學與資安探索者"];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById('typing');
-
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 150;
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(type, typeSpeed);
-        }
-        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
     </script>
 </body>
 </html>
