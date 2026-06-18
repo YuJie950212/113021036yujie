@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,22 +60,6 @@
             font-weight: 500;
         }
 
-        /* 倒數計時器樣式 */
-        .timer-container {
-            background-color: rgba(56, 189, 248, 0.1);
-            border: 1px solid var(--primary-color);
-            padding: 0.8rem;
-            border-radius: 8px;
-            max-width: 400px;
-            margin: 1.5rem auto 0 auto;
-            font-size: 0.9rem;
-        }
-
-        #countdown {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
         /* 導覽頁籤 */
         nav {
             display: flex;
@@ -101,8 +84,7 @@
             border-radius: 4px;
         }
 
-        .tab-btn.active,
-        .tab-btn:hover {
+        .tab-btn.active, .tab-btn:hover {
             color: var(--text-color);
             background-color: rgba(255, 255, 255, 0.05);
             border-bottom: 2px solid var(--primary-color);
@@ -125,15 +107,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card {
@@ -176,17 +151,12 @@
         }
     </style>
 </head>
-
 <body>
 
     <header>
         <div class="avatar-placeholder">💻</div>
         <h1>歡迎來到我的個人空間</h1>
         <div class="typing-text" id="typing"></div>
-
-        <div class="timer-container">
-            網頁開放瀏覽倒數：<span id="countdown">計算中...</span>
-        </div>
     </header>
 
     <nav>
@@ -230,10 +200,8 @@
                 <h2>如何聯繫我</h2>
                 <p>如果您對我的專案感興趣，或者有任何學術、技術上的交流意願，歡迎透過以下方式聯絡：</p>
                 <br>
-                <p>📧 Email: <a href="mailto:your-email@example.com"
-                        style="color: var(--primary-color);">your-email@example.com</a></p>
-                <p>🐙 GitHub: <a href="https://github.com" target="_blank"
-                        style="color: var(--primary-color);">github.com/your-username</a></p>
+                <p>📧 Email: <a href="mailto:your-email@example.com" style="color: var(--primary-color);">your-email@example.com</a></p>
+                <p>🐙 GitHub: <a href="https://github.com" target="_blank" style="color: var(--primary-color);">github.com/your-username</a></p>
             </div>
         </div>
     </div>
@@ -247,10 +215,10 @@
         function switchTab(event, tabId) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
-
+            
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-
+            
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
@@ -275,48 +243,34 @@
             let typeSpeed = isDeleting ? 50 : 150;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // 錯字停留時間
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500; // 換字間隔
+                typeSpeed = 500;
             }
 
             setTimeout(type, typeSpeed);
         }
         document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
 
-        // 3. 6/30 瀏覽期限倒數與自動關閉 (Deadline Countdown)
-        // 設定目標日期為 2026 年 6 月 30 日 23:59:59
-        const targetDate = new Date("2026-06-30T23:59:59").getTime();
-
-        const countdownTimer = setInterval(function () {
+        // 3. 靜態期限檢查：6/30 後自動關閉網頁內容
+        function checkDeadline() {
+            const targetDate = new Date("2026-06-30T23:59:59").getTime();
             const now = new Date().getTime();
-            const difference = targetDate - now;
 
-            if (difference <= 0) {
-                clearInterval(countdownTimer);
-                document.getElementById("countdown").textContent = "已結束瀏覽期限";
-                // 期限到期時，清空網頁主要內容，呈現關閉狀態
+            if (now >= targetDate) {
                 document.body.innerHTML = `
                     <div style="text-align:center; padding:10rem 2rem; font-family:sans-serif; background-color:#0f172a; color:#f8fafc;">
                         <h1 style="color:#ef4444; margin-bottom:1rem;">⚠️ 本網頁瀏覽期限已屆滿</h1>
                         <p style="color:#94a3b8;">該網頁設定之瀏覽期限至 2026 年 6 月 30 日為止，目前已停止開放。</p>
                     </div>
                 `;
-                return;
             }
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").textContent =
-                `${days} 天 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
-        }, 1000);
+        }
+        // 網頁載入時立刻檢查
+        document.addEventListener("DOMContentLoaded", checkDeadline);
     </script>
 </body>
-
 </html>
